@@ -2,11 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
+      inputs.hardware.nixosModules.common-cpu-amd
+      inputs.hardware.nixosModules.common-gpu-amd
+      inputs.hardware.nixosModules.common-pc-ssd
+
       ./hardware-configuration.nix ./zfs.nix
 
       ../common/global/nix.nix
@@ -26,12 +30,13 @@
   users.users.cole = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     initialPassword = "password";
   };
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
-
+  security.polkit.enable = true;
+  hardware.opengl.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -46,6 +51,7 @@
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      git
+     pciutils
    ];
 
   # Some programs need SUID wrappers, can be configured further or are

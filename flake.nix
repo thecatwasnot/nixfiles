@@ -14,7 +14,11 @@
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -67,6 +71,7 @@
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/cole
+            ./home-manager/cole/pulsar.nix
           ];
         };
       };
