@@ -33,6 +33,7 @@
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     initialPassword = "password";
   };
+
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
   security.polkit.enable = true;
@@ -43,7 +44,7 @@
 
   # Enable sound.
   # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  services.pipewire.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -10,7 +10,6 @@
     swaybg
     swayidle
     swaylock-effects
-    firefox
   ];
 
   wayland.windowManager.hyprland = 
