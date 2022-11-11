@@ -31,7 +31,8 @@
       ''
         general {
           main_mod = SUPER
-          gaps = 5
+          gaps_in = 5
+          gaps_out = 10
           border_size = 2.5
           cursor_inactive_timeout = 4
         }
@@ -39,7 +40,7 @@
         decoration {
           active_opacity = 0.9
           inactive_opacity = 0.5
-          rouding = 5
+          rounding = 5
         }
 
         animations {
