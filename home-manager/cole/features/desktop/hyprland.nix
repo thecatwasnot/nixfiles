@@ -1,12 +1,15 @@
 { inputs, lib, config, pkgs, ...}: {
-  imports = [ inputs.hyprland.homeManagerModules.default ];
+
+  imports = [ 
+    ./common
+    inputs.hyprland.homeManagerModules.default
+  ];
   
   home.packages = with pkgs; [
     mako
     swaybg
     swayidle
     swaylock-effects
-    foot
     firefox
   ];
 
@@ -22,11 +25,40 @@
     in
     {
       enable = true;
-      package = (inputs.hyprland.packages.${pkgs.system}.hyprland.override {legacyRenderer = true;});
-      # xwayland.enable = false;
-      # xwayland.hidpi = false;
-      #extraConfig =
-      #''
-      #'';
+      xwayland.enable = false;
+      xwayland.hidpi = false;
+      extraConfig =
+      ''
+        general {
+          main_mod = SUPER
+          gaps = 5
+          border_size = 2.5
+          cursor_inactive_timeout = 4
+        }
+
+        decoration {
+          active_opacity = 0.9
+          inactive_opacity = 0.5
+          rouding = 5
+        }
+
+        animations {
+        }
+        dwindle {
+        }
+
+        # Startup
+        # exec-once=waybar
+        exec-once = ${mako}
+        # exec-once = ${swayidle} -w
+
+        # Programs
+        bind = SUPER, Return, exec, ${terminal}
+        bind = SUPER, b, exec, ${browser}
+
+        # Window manager controls
+        bind = SUPERSHIFT, q, killactive
+        bind = SUPERSHIFT, e, exit
+      '';
   };
 }
