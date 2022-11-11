@@ -4,5 +4,6 @@
     ./firefox.nix
     ./font.nix
     ./foot.nix
+    ./gtk.nix
   ];
 }
