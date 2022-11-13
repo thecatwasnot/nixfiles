@@ -10,8 +10,8 @@ in rec {
       size = 12;
     };
     theme = {
-      name = "${config.colorScheme.slug}";
-      package = gtkThemeFromScheme { scheme = config.colorScheme; };
+      name = "${config.colorscheme.slug}";
+      package = gtkThemeFromScheme { scheme = config.colorscheme; };
     };
     iconTheme = {
       name = "Fluent";
