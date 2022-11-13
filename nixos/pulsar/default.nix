@@ -14,6 +14,7 @@
       ./hardware-configuration.nix ./zfs.nix
 
       ../common/global/nix.nix
+      ../common/optional/pipewire.nix
     ];
 
 
@@ -41,10 +42,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  services.pipewire.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
