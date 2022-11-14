@@ -39,6 +39,7 @@
   programs.ssh.startAgent = true;
   security.polkit.enable = true;
   hardware.opengl.enable = true;
+  programs.dconf.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
