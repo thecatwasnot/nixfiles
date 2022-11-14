@@ -37,9 +37,16 @@
 
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
+
+  # Configuration for hyprland.  See: https://github.com/hyprwm/Hyprland/blob/main/nix/module.nix
+  fonts.enableDefaultFonts = true;
   security.polkit.enable = true;
   hardware.opengl.enable = true;
   programs.dconf.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
