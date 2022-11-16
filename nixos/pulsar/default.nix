@@ -3,7 +3,8 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
+let ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -15,6 +16,7 @@
 
       ../common/global/nix.nix
       ../common/optional/pipewire.nix
+      ../common/optional/virt-manager.nix
     ];
 
 
@@ -31,7 +33,7 @@
   users.users.cole = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ] ++ ifTheyExist [ "libvirtd" ]; 
     initialPassword = "password";
   };
 
