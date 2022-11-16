@@ -2,6 +2,7 @@
 
   imports = [ 
     ./common
+    ./common/wayland
     inputs.hyprland.homeManagerModules.default
   ];
   
