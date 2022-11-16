@@ -25,7 +25,7 @@
     in
     {
       enable = true;
-      xwayland.enable = false;
+      xwayland.enable = true;
       xwayland.hidpi = false;
       extraConfig =
       ''
