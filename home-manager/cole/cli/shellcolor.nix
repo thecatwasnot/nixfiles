@@ -3,7 +3,7 @@ let inherit (config.colorscheme) colors;
 in {
   programs.shellcolor = {
     enable = true;
-    enableBashSshFunction = true;
+    enableZshIntegration = true;
     settings = {
       base00 = "${colors.base00}";
       base01 = "${colors.base01}";
