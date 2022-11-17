@@ -5,5 +5,9 @@
     ./font.nix
     ./foot.nix
     ./gtk.nix
+    ./playerctl.nix
+  ];
+  home.packages = with pkgs; [
+    pavucontrol
   ];
 }

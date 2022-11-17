@@ -49,7 +49,7 @@
         }
 
         # Startup
-        # exec-once=waybar
+        exec-once=waybar
         exec-once = ${mako}
         # exec-once = ${swayidle} -w
 
