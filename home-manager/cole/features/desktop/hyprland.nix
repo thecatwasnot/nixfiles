@@ -27,13 +27,15 @@
       enable = true;
       xwayland.enable = true;
       xwayland.hidpi = false;
-      extraConfig =
+      extraConfig = let inherit (config.colorscheme) colors; in
       ''
         general {
           main_mod = SUPER
           gaps_in = 5
           gaps_out = 10
-          border_size = 2.5
+          border_size = 1.5
+          col.active_border=0xff${colors.base0C}
+          col.inactive_border=0xff${colors.base02}
           cursor_inactive_timeout = 4
         }
 

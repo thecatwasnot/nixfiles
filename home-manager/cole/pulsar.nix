@@ -6,5 +6,5 @@ in {
      inputs.nix-colors.homeManagerModule
     ./features/desktop/hyprland.nix
   ];
-  colorscheme = inputs.nix-colors.colorSchemes.nova;
+  colorscheme = inputs.nix-colors.colorSchemes.material-darker;
 }
