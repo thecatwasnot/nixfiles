@@ -2,7 +2,7 @@
   imports = [
     ./git.nix
     ./shellcolor.nix
-    ./vim.nix
+    ./nvim.nix
   ];
   home.packages = with pkgs; [
   ];
