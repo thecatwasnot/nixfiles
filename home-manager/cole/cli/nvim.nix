@@ -11,9 +11,44 @@
     plugins = with pkgs.vimPlugins; 
     [ 
       {
+        plugin =  telescope-nvim;
+        config = ''
+					nnoremap <leader>ff <cmd>Telescope find_files<cr>
+					nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+					nnoremap <leader>fb <cmd>Telescope buffers<cr>
+					nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+				'';
+      }
+
+      {
+        plugin = lualine-nvim;
+        config = "lua require('lualine').setup()";
+      }
+      {
         plugin = vimThemeFromScheme { scheme = config.colorscheme; };
         config = "colorscheme nix-${config.colorscheme.slug}";
       }
+      {
+        plugin = (nvim-treesitter.withPlugins ( plugins:
+          with plugins; [
+            tree-sitter-bash
+            tree-sitter-nix
+            tree-sitter-markdown
+            tree-sitter-vim
+          ])
+        );
+        type = "lua";
+        config = ''
+          require 'nvim-treesitter.configs'.setup {
+            highlight = { enable = true },
+            indent = { enable = true },
+          }
+        ''; 
+      }
+      # Dependencies
+      popfix
+      plenary-nvim
+      nvim-web-devicons
     ];
     extraConfig = ''
 set nocompatible
