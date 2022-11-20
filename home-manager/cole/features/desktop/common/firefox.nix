@@ -5,9 +5,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      forceWayland = true;
-    };
+    package = pkgs.firefox;
     extensions = with addons; [
       bitwarden
       duckduckgo-privacy-essentials 
