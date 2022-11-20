@@ -28,6 +28,11 @@
       xwayland.enable = true;
       xwayland.hidpi = false;
       extraConfig = let inherit (config.colorscheme) colors; in
+      (builtins.concatStringsSep "\n" (lib.forEach config.monitors (m: ''
+        monitor=${m.name},${toString m.width}x${toString m.height},${toString m.x}x${toString m.y},${if m.enabled then "1" else "0"}
+        ${lib.optionalString (m.workspace != null)"workspace=${m.name},${m.workspace}"}
+        ${lib.optionalString (m.transform != null)"monitor=${m.name},transform,${m.transform}"}
+      ''))) +
       ''
         general {
           main_mod = SUPER
