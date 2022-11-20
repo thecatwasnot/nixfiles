@@ -32,7 +32,7 @@
         general {
           main_mod = SUPER
           gaps_in = 5
-          gaps_out = 10
+          gaps_out = 8
           border_size = 1.5
           col.active_border=0xff${colors.base0C}
           col.inactive_border=0xff${colors.base02}
@@ -42,12 +42,16 @@
         decoration {
           active_opacity = 0.9
           inactive_opacity = 0.5
+          fullscreen_opacity=1.0
           rounding = 5
         }
 
         animations {
         }
         dwindle {
+          col.group_border_active=0xff${colors.base0B}
+          col.group_border=0xff${colors.base04}
+          split_width_multiplier=1.35
         }
 
         # Startup
