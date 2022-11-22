@@ -1,7 +1,8 @@
 { pkgs, config, ... }: {
   home.packages = [ pkgs.foot ];
-  home.file.".config/foot/foot.ini".text = ''
+  xdg.configFile."foot/foot.ini".text = ''
     [main]
-    font = ${config.fontProfiles.monospace.family}
+    font = ${config.fontProfiles.monospace.family}:size=8
+    pad = 5x5center
   '';
 }
