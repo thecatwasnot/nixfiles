@@ -5,6 +5,7 @@ in {
   imports = [
      inputs.nix-colors.homeManagerModule
     ./features/desktop/hyprland.nix
+    ./features/desktop/optional/zoom.nix
   ];
   colorscheme = inputs.nix-colors.colorSchemes.material-darker;
 # Expected layout:
