@@ -8,6 +8,7 @@
     ./playerctl.nix
   ];
   home.packages = with pkgs; [
+    helvum
     pavucontrol
   ];
 }
