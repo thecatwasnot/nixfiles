@@ -1,6 +1,7 @@
-{ inputs, pkgs, ...}: 
+{ inputs, pkgs, config, ...}: 
 let
   inherit (inputs.nix-colors) colorSchemes;
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
 in {
   imports = [
      inputs.nix-colors.homeManagerModule
@@ -8,6 +9,12 @@ in {
     ./features/desktop/optional/zoom.nix
   ];
   colorscheme = inputs.nix-colors.colorSchemes.material-darker;
+  wallpaper = nixWallpaperFromScheme {
+    scheme = config.colorscheme;
+    width = 1920;
+    height = 2560;
+    logoScale = 5.0;
+  };
 # Expected layout:
 # ----
 #|   |

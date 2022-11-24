@@ -61,6 +61,7 @@
 
         # Startup
         exec-once=waybar
+        exec-once=${swaybg} -m center -i ${config.wallpaper}
         exec-once = ${mako}
         # exec-once = ${swayidle} -w
 
