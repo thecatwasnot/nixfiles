@@ -63,11 +63,15 @@
         exec-once=waybar
         exec-once=${swaybg} -m center -i ${config.wallpaper}
         exec-once = ${mako}
-        # exec-once = ${swayidle} -w
+        exec-once = ${swayidle} -w
 
         # Programs
         bind = SUPER, Return, exec, ${terminal}
         bind = SUPER, b, exec, ${browser}
+
+        # Lock screen
+        bind=,XF86Launch5,exec,${swaylock} -S
+        bind=,XF86Launch4,exec,${swaylock} -S
 
         # Window manager controls
         bind = SUPERSHIFT, q, killactive

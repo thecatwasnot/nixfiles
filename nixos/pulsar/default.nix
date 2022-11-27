@@ -40,6 +40,7 @@ in
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
   environment.pathsToLink = [ "/share/zsh" ]; # For programs.zsh.enableCompletion
+  security.pam.services = { swaylock = { }; }; # For swaylock
 
   # Configuration for hyprland.  See: https://github.com/hyprwm/Hyprland/blob/main/nix/module.nix
   fonts.enableDefaultFonts = true;
