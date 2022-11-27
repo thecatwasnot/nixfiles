@@ -67,6 +67,7 @@ in
      wget
      git
      pciutils
+     libcamera
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
