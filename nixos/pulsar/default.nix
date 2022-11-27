@@ -44,11 +44,17 @@ in
   # Configuration for hyprland.  See: https://github.com/hyprwm/Hyprland/blob/main/nix/module.nix
   fonts.enableDefaultFonts = true;
   security.polkit.enable = true;
+  security.rtkit.enable = true;
   hardware.opengl.enable = true;
   programs.dconf.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-wlr
+      #pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   # Enable CUPS to print documents.
