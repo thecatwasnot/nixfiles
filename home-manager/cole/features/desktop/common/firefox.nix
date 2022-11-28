@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: 
+{ pkgs, inputs, ... }:
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
 in
@@ -8,11 +8,11 @@ in
     package = pkgs.firefox;
     extensions = with addons; [
       bitwarden
-      duckduckgo-privacy-essentials 
+      duckduckgo-privacy-essentials
       forget_me_not
     ];
     profiles.cole = {
-      bookmarks = {};
+      bookmarks = { };
       settings = {
         "browser.startup.homepage" = "https://start.duckduckgo.com";
         "privacy.trackingprotection.enabled" = true;

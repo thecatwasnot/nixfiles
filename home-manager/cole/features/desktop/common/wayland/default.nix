@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./swayidle.nix
     ./swaylock.nix

@@ -1,10 +1,11 @@
-{ inputs, pkgs, config, ...}: 
+{ inputs, pkgs, config, ... }:
 let
   inherit (inputs.nix-colors) colorSchemes;
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
-in {
+in
+{
   imports = [
-     inputs.nix-colors.homeManagerModule
+    inputs.nix-colors.homeManagerModule
     ./features/desktop/hyprland.nix
     ./features/desktop/optional/zoom.nix
   ];
@@ -15,20 +16,20 @@ in {
     height = 2560;
     logoScale = 5.0;
   };
-# Expected layout:
-# ----
-#|   |
-#|   |--------------
-#|   ||     ||     |
-#|   ||     ||     |
-# ------------------
-# HDMI-A-1  DVI-D-1  DVI-I-1
+  # Expected layout:
+  # ----
+  #|   |
+  #|   |--------------
+  #|   ||     ||     |
+  #|   ||     ||     |
+  # ------------------
+  # HDMI-A-1  DVI-D-1  DVI-I-1
   monitors = [
     {
       name = "HDMI-A-1";
       isSecondary = true;
       transform = "3";
-# See https://wiki.hyprland.org/Configuring/Monitors/#rotating-and-the-default-workspace
+      # See https://wiki.hyprland.org/Configuring/Monitors/#rotating-and-the-default-workspace
       width = 2560;
       height = 1080;
       x = 0;

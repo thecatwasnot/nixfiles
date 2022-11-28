@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, config, ...}: {
+{ pkgs, inputs, lib, config, ... }: {
   nix = {
     settings = {
       auto-optimise-store = lib.mkDefault true;

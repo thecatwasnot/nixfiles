@@ -8,7 +8,7 @@
     defaultKeymap = "viins";
     plugins = [
       {
-#TODO: Fix zompile writing to unwritable directory.
+        #TODO: Fix zompile writing to unwritable directory.
         name = "apollo-zsh-theme";
         file = "apollo-zsh-theme.zsh";
         src = pkgs.fetchFromGitHub {

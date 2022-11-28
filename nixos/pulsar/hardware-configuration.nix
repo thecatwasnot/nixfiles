@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
@@ -14,42 +15,55 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "rpool/nixos/root";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/root";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home" =
-    { device = "rpool/nixos/home";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/home";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/lib" =
-    { device = "rpool/nixos/var/lib";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/var/lib";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/log" =
-    { device = "rpool/nixos/var/log";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/var/log";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/boot" =
-    { device = "bpool/nixos/root";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "bpool/nixos/root";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/boot/efis/ata-T-FORCE_1TB_112007210450713-part1" =
-    { device = "/dev/disk/by-uuid/0057-D659";
+    {
+      device = "/dev/disk/by-uuid/0057-D659";
       fsType = "vfat";
     };
 
   fileSystems."/boot/efis/ata-T-FORCE_1TB_AD0000000000000173-part1" =
-    { device = "/dev/disk/by-uuid/0058-8CB3";
+    {
+      device = "/dev/disk/by-uuid/0058-8CB3";
       fsType = "vfat";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/boot/efis/ata-T-FORCE_1TB_112007210450713-part1";
+    {
+      device = "/boot/efis/ata-T-FORCE_1TB_112007210450713-part1";
       fsType = "none";
       options = [ "bind" ];
     };

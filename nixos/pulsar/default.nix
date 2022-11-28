@@ -7,12 +7,14 @@ let ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       inputs.hardware.nixosModules.common-cpu-amd
       inputs.hardware.nixosModules.common-gpu-amd
       inputs.hardware.nixosModules.common-pc-ssd
 
-      ./hardware-configuration.nix ./zfs.nix
+      ./hardware-configuration.nix
+      ./zfs.nix
 
       ../common/global/nix.nix
       ../common/optional/pipewire.nix
@@ -33,7 +35,7 @@ in
   users.users.cole = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "video" ] ++ ifTheyExist [ "libvirtd" ]; 
+    extraGroups = [ "wheel" "video" ] ++ ifTheyExist [ "libvirtd" ];
     initialPassword = "password";
   };
 
@@ -64,12 +66,12 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     git
-     pciutils
-     libcamera
-   ];
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    git
+    pciutils
+    libcamera
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -12,10 +12,10 @@
       lt = "!git ls --graph";
       ld = "log --pretty=format: '%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --date=relative --decorate";
       fixup = ''
-      ! sh -c 'SHA =$git rev-parse $1) \
-       && git commit --fixup $SHA \
-       && git rebase -i --autosquash $SHA~ '-
-       '';
+        ! sh -c 'SHA =$git rev-parse $1) \
+         && git commit --fixup $SHA \
+         && git rebase -i --autosquash $SHA~ '-
+      '';
     };
     extraConfig = {
       core.editor = "vim";
@@ -28,15 +28,15 @@
     };
   };
   xdg.configFile."git/committemplate".text = ''
-# Imperative subject, "If applied, this commit will ..."
+    # Imperative subject, "If applied, this commit will ..."
 
-# Why is this change necessary?
+    # Why is this change necessary?
 
-# How does it address the issue?
+    # How does it address the issue?
 
-# What side effects does this change have?
+    # What side effects does this change have?
 
-# Refrences
+    # Refrences
 
   '';
 }
