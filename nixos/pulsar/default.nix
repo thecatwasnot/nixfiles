@@ -17,6 +17,7 @@ in
       ./zfs.nix
 
       ../common/global/nix.nix
+      ../common/optional/networkd.nix
       ../common/optional/pipewire.nix
       ../common/optional/virt-manager.nix
     ];
