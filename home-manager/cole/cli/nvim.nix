@@ -37,6 +37,7 @@ in
               tree-sitter-bash
               tree-sitter-nix
               tree-sitter-markdown
+              tree-sitter-ruby
               tree-sitter-vim
             ])
           );
@@ -48,6 +49,7 @@ in
             }
           '';
         }
+        vim-floaterm
         # Dependencies
         popfix
         plenary-nvim
@@ -117,6 +119,9 @@ in
 
       " Ctrl+Del erases word to the right in insert mode
       inoremap <C-kDel> <space><ESC>ce
+
+      "This unsets the "last search pattern" register by hitting return
+      nnoremap <CR> :noh<CR><CR>
     '';
   };
 }
