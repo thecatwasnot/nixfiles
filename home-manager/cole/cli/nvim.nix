@@ -11,6 +11,8 @@ in
 
     plugins = with pkgs.vimPlugins;
       [
+        vim-hardtime
+        which-key-nvim
         {
           plugin = telescope-nvim;
           type = "lua";
@@ -49,6 +51,10 @@ in
             }
           '';
         }
+        {
+          plugin = bufferline-nvim;
+          config = "lua require('bufferline').setup{}";
+        }
         vim-floaterm
         # Dependencies
         popfix
@@ -59,6 +65,7 @@ in
       set nocompatible
       syntax on
       set noerrorbells
+      set termguicolors
 
       " Always show status
       set laststatus=2
