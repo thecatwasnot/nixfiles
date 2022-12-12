@@ -1,0 +1,64 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    concurrent-ruby (1.1.10)
+    dry-auto_inject (1.0.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-cli (1.0.0)
+    dry-configurable (1.0.1)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-core (1.0.0)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-events (1.0.1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+    dry-files (1.0.1)
+    dry-inflector (1.0.0)
+    dry-logger (1.0.3)
+    dry-monitor (1.0.1)
+      dry-configurable (~> 1.0, < 2)
+      dry-core (~> 1.0, < 2)
+      dry-events (~> 1.0, < 2)
+    dry-system (1.0.1)
+      dry-auto_inject (~> 1.0, < 2)
+      dry-configurable (~> 1.0, < 2)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+    dry-transformer (1.0.1)
+      zeitwerk (~> 2.6)
+    hanami (2.0.1)
+      bundler (>= 1.16, < 3)
+      dry-configurable (~> 1.0, < 2)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+      dry-logger (~> 1.0, < 2)
+      dry-monitor (~> 1.0, >= 1.0.1, < 2)
+      dry-system (~> 1.0, < 2)
+      hanami-cli (~> 2.0)
+      hanami-utils (~> 2.0)
+      zeitwerk (~> 2.6)
+    hanami-cli (2.0.1)
+      bundler (~> 2.1)
+      dry-cli (~> 1.0, < 2)
+      dry-files (~> 1.0, >= 1.0.1, < 2)
+      dry-inflector (~> 1.0, < 2)
+      rake (~> 13.0)
+      zeitwerk (~> 2.6)
+    hanami-utils (2.0.1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      dry-transformer (~> 1.0, < 2)
+    rake (13.0.6)
+    zeitwerk (2.6.6)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  hanami
+
+BUNDLED WITH
+   2.2.33

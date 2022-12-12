@@ -4,4 +4,5 @@
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage ./example { };
   shellcolord = pkgs.callPackage ./shellcolord { };
+  hanami = pkgs.callPackage ./hanami { };
 }

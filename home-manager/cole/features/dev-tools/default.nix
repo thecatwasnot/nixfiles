@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    hanami
     zellij
   ];
   programs.direnv = {
