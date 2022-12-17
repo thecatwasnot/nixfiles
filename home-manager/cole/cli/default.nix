@@ -10,8 +10,16 @@
     fd
     ripgrep
     tree
+    exa
   ];
   programs.zsh.initExtra = ''
     any-nix-shell zsh --info-right | source /dev/stdin
   '';
+  home.shellAliases = {
+    ls = "exa";
+    ll = "exa -l";
+    la = "exa -la";
+    lsg = "exa -l --git --header";
+    lt = "exa --tree --long --header";
+  };
 }
