@@ -1,7 +1,10 @@
 { pkgs, ... }: {
+  imports = [
+    ./zellij.nix
+  ];
+
   home.packages = with pkgs; [
     hanami
-    zellij
   ];
   programs.direnv = {
     enable = true;
