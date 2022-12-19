@@ -13,4 +13,7 @@
   programs.lazygit.enable = true;
 
   programs.bat.enable = true;
+  xdg.configFile."bat/config".text = ''
+    --theme="base16"
+  '';
 }
