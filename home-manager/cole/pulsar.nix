@@ -8,7 +8,6 @@ in
     inputs.nix-colors.homeManagerModule
     ./features/dev-tools
     ./features/desktop/hyprland.nix
-    ./features/desktop/optional/zoom.nix
   ];
   colorscheme = inputs.nix-colors.colorSchemes.material-darker;
   wallpaper = nixWallpaperFromScheme {

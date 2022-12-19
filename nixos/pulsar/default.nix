@@ -20,6 +20,7 @@ in
       ../common/optional/networkd.nix
       ../common/optional/pipewire.nix
       ../common/optional/virt-manager.nix
+      ../common/optional/flatpak.nix
     ];
 
 

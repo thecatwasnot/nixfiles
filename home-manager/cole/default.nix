@@ -31,9 +31,8 @@
     ];
     # Configure your nixpkgs instance
     config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "zoom"
-      # Disable if you don't want unfree packages
-      # allowUnfree = true;
+      # list unfree packages here ex.
+      # "zoom"
     ];
   };
 
