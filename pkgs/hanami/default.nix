@@ -8,11 +8,10 @@ bundlerApp {
   exes = [ "hanami" ];
 
   meta = with lib; {
-    description = "";
+    description = "The web, with simplicity";
     homepage = "https://hanamirb.org/";
     license = licenses.mit;
     platforms = platforms.all;
     maintainers = with maintainers; [ thecatwasnot ];
-
   };
 }

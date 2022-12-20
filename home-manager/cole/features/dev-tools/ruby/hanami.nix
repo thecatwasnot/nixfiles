@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # hanami package for creating new apps
-    hanami
+    #   use with a shell: nix shell .#hanami
+    # hanami
   ];
 
   xdg.configFile."zellij/layouts/hanami.kdl".text = ''
