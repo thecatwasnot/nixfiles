@@ -3,6 +3,7 @@
 
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage ./example { };
+  bridgetown = pkgs.callPackage ./bridgetown { };
   shellcolord = pkgs.callPackage ./shellcolord { };
   hanami = pkgs.callPackage ./hanami { };
 }
