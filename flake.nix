@@ -24,7 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-   devenv.url = "github:cachix/devenv/v0.4";
+   devenv.url = "github:cachix/devenv";
+   # devenv.url = "github:cachix/devenv/v0.4";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
