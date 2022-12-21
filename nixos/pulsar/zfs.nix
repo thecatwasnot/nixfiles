@@ -32,5 +32,9 @@
     "/dev/disk/by-id/ata-T-FORCE_1TB_112007210450713"
     "/dev/disk/by-id/ata-T-FORCE_1TB_AD0000000000000173"
   ];
+  services.zfs = {
+    autoScrub.enable = true;
+    trim.enable = true;
+  };
   users.users.root.initialHashedPassword = "$6$CAnB2ncXfdYCQWh8$M359CCDzgO7wg.L.yNySCBAlzgxiwNiJQsqU3c9MexY6Oe/iz3ZV7zMNcKDJz68AwuOpuVJqTCH9p5llvfgXU0";
 }
