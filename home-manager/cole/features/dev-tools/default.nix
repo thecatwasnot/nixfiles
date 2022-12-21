@@ -1,8 +1,16 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: 
+let
+  devenv = inputs.devenv.packages.${pkgs.system}.devenv;
+in
+{
 
   imports = [
     ./zellij.nix
     ./ruby/hanami.nix
+  ];
+
+  home.packages = [
+    devenv
   ];
 
   programs.direnv = {
