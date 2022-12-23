@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: 
+{ pkgs, inputs, ... }:
 let
   devenv = inputs.devenv.packages.${pkgs.system}.devenv;
 in
