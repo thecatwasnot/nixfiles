@@ -132,10 +132,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "07yr1584m81nk900rry8sgh4b872ghc8y4d1q273sdwsikqaszzy";
+      sha256 = "0xymdvnpxb5f2vwla3vy6kl15kl5g3dimk2gbzpsgls0iac03700";
       type = "gem";
     };
-    version = "2.0.1";
+    version = "2.0.2";
   };
   hanami-cli = {
     dependencies = [ "dry-cli" "dry-files" "dry-inflector" "rake" "zeitwerk" ];
@@ -143,10 +143,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "1d1pybad1jrig9ij1ll0wayxj945b7frl8kzqb57i8yizs0sj1l7";
+      sha256 = "1v1123msqlixx3s3dm27412hl5sz6phbhv9cjj4yfgyr81pzmgsq";
       type = "gem";
     };
-    version = "2.0.1";
+    version = "2.0.2";
   };
   hanami-utils = {
     dependencies = [ "concurrent-ruby" "dry-core" "dry-transformer" ];
@@ -154,10 +154,10 @@
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
-      sha256 = "06sc9j63ghs93ldqa3kij2fh3ryvgyzy8h65gc37cy68w9792zps";
+      sha256 = "1vbl79k9khjh37n2zvj5w06c54c6kfq5hsgwh5hqhd5r8xnswpy9";
       type = "gem";
     };
-    version = "2.0.1";
+    version = "2.0.2";
   };
   rake = {
     groups = [ "default" ];
