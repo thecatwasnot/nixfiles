@@ -27,4 +27,9 @@ rec {
       "Net/IconThemeName" = "${gtk.iconTheme.name}";
     };
   };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
 }
