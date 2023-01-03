@@ -35,7 +35,6 @@
         ''))) +
         ''
                   general {
-                    main_mod = SUPER
                     gaps_in = 5
                     gaps_out = 8
                     border_size = 1.5
