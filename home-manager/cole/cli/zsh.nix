@@ -9,4 +9,10 @@
     plugins = [
     ];
   };
+
+  # enable nix-index, a file database for nixpkgs.
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }
