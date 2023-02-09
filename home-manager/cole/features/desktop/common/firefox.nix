@@ -6,13 +6,13 @@ in
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
-    extensions = with addons; [
-      bitwarden
-      duckduckgo-privacy-essentials
-      forget_me_not
-    ];
     profiles.cole = {
       bookmarks = { };
+      extensions = with addons; [
+        bitwarden
+        duckduckgo-privacy-essentials
+        forget_me_not
+      ];
       settings = {
         "browser.startup.homepage" = "https://start.duckduckgo.com";
         "privacy.trackingprotection.enabled" = true;
