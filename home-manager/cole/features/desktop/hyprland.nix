@@ -7,6 +7,7 @@
   ];
 
   home.packages = with pkgs; [
+    xdg-utils
     mako
     swaybg
     swayidle
