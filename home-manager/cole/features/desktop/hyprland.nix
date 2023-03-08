@@ -41,6 +41,8 @@
                     border_size = 1.5
                     col.active_border=0xff${colors.base0C}
                     col.inactive_border=0xff${colors.base02}
+                    col.group_border_active=0xff${colors.base0B}
+                    col.group_border=0xff${colors.base04}
                     cursor_inactive_timeout = 4
                   }
 
@@ -54,8 +56,6 @@
                   animations {
                   }
                   dwindle {
-                    col.group_border_active=0xff${colors.base0B}
-                    col.group_border=0xff${colors.base04}
                     split_width_multiplier=1.35
                   }
 
