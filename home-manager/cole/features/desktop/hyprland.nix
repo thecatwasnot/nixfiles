@@ -27,7 +27,6 @@
     {
       enable = true;
       xwayland.enable = true;
-      xwayland.hidpi = false;
       extraConfig = let inherit (config.colorscheme) colors; in
         (builtins.concatStringsSep "\n" (lib.forEach config.monitors (m: ''
           monitor=${m.name},${toString m.width}x${toString m.height},${toString m.x}x${toString m.y},${if m.enabled then "1" else "0"}
