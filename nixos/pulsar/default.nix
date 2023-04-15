@@ -22,6 +22,7 @@ in
       ../common/optional/pipewire.nix
       ../common/optional/virt-manager.nix
       ../common/optional/flatpak.nix
+      ../common/optional/printing.nix
     ];
 
 
