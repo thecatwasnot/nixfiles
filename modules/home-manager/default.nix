@@ -5,7 +5,6 @@
   # List your module files here
   fonts = import ./fonts.nix;
   monitors = import ./monitors.nix;
-  shellcolor = import ./shellcolor.nix;
   swaylock = import ./swaylock.nix;
   wallpaper = import ./wallpaper.nix;
 }

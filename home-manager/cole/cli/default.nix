@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   imports = [
     ./git.nix
-    ./shellcolor.nix
     ./starship.nix
     ./nvim.nix
     ./zsh.nix

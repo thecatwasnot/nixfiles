@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, config, ... }:
+let
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) shellThemeFromScheme;
+in
+rec {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -8,6 +12,9 @@
     defaultKeymap = "viins";
     plugins = [
     ];
+    initExtraFirst = ''
+      sh ${shellThemeFromScheme { scheme = config.colorscheme; }}
+    '';
   };
 
   # enable nix-index, a file database for nixpkgs.
