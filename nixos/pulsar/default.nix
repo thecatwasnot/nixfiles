@@ -46,24 +46,21 @@ in
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
   environment.pathsToLink = [ "/share/zsh" ]; # For programs.zsh.enableCompletion
+
   security.pam.services = { swaylock = { }; }; # For swaylock
 
-  # Configuration for hyprland.  See: https://github.com/hyprwm/Hyprland/blob/main/nix/module.nix
-  fonts.enableDefaultFonts = true;
-  security.polkit.enable = true;
-  security.rtkit.enable = true;
-  hardware.opengl.enable = true;
-  programs.dconf.enable = true;
-  xdg.portal = {
+  services.greetd = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
-      #pkgs.xdg-desktop-portal-wlr
-      #pkgs.xdg-desktop-portal-gtk
-    ];
+    settings.default_session = {
+      command = "dbus-run-session ${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.regreet}/bin/regreet";
+    };
   };
+  programs.regreet = {
+    enable = true;
+  };
+
+  programs.hyprland.enable = true;
+  # Configuration for hyprland.  See: https://github.com/hyprwm/Hyprland/blob/main/nix/module.nix
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
