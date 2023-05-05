@@ -23,6 +23,7 @@
 
       terminal = "${pkgs.foot}/bin/foot";
       browser = "${pkgs.firefox}/bin/firefox";
+      launcher = "${pkgs.anyrun}/bin/anyrun";
     in
     {
       enable = true;
@@ -67,6 +68,7 @@
                   # Programs
                   bind = SUPER, Return, exec, ${terminal}
                   bind = SUPER, b, exec, ${browser}
+                  bind = SUPER, x, exec, ${launcher}
 
                   # Lock screen
                   bind=,XF86Launch5,exec,${swaylock} -S

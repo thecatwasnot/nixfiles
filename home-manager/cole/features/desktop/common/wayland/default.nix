@@ -4,6 +4,7 @@
     ./swaylock.nix
     ./waybar.nix
     ./wlsunset.nix
+    ./anyrun.nix
   ];
 
   home.packages = with pkgs; [
