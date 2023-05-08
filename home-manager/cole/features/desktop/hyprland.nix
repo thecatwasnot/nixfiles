@@ -68,6 +68,7 @@
                   # Programs
                   bind = SUPER, Return, exec, ${terminal}
                   bind = SUPER, b, exec, ${browser}
+                  windowrule = opacity 1.0 override,^(firefox)$
                   bind = SUPER, x, exec, ${launcher}
 
                   # Lock screen
