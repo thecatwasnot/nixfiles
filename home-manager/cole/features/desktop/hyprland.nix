@@ -14,6 +14,10 @@
     swaylock-effects
   ];
 
+  programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
+    mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+  });
+
   wayland.windowManager.hyprland =
     let
       mako = "${pkgs.mako}/bin/mako";

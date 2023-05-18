@@ -98,7 +98,7 @@ in
           #on-click = calendar;
         };
         cpu = {
-          format = "   {usage}%";
+          format = "   {usage}%";
           on-click = systemMonitor;
         };
         "custom/gpu" = {
@@ -112,7 +112,7 @@ in
           on-click = systemMonitor;
         };
         memory = {
-          format = "  {}%";
+          format = "󰘚  {}%";
           interval = 5;
           on-click = systemMonitor;
         };
@@ -121,7 +121,7 @@ in
           format-muted = "   0%";
           format-icons = {
             headphone = "";
-            headset = "";
+            headset = "󰋎";
             portable = "";
             default = [ "" "" "" ];
           };
@@ -130,9 +130,9 @@ in
         battery = {
           bat = "BAT0";
           interval = 10;
-          format-icons = [ "" "" "" "" "" "" "" "" "" "" ];
+          format-icons = [ "󱃍" "󰂎" "󱊡" "󱊢" "󱊣" ];
           format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
+          format-charging = " 󰢟 {capacity}%";
         };
         "sway/window" = {
           max-length = 20;
@@ -140,8 +140,8 @@ in
         network = {
           interval = 3;
           format-wifi = "   {essid}";
-          format-ethernet = " Connected";
-          format-disconnected = "";
+          format-ethernet = "󰈁 Connected";
+          format-disconnected = "󰈂";
           tooltip-format = ''
             {ifname}
             {ipaddr}/{cidr}
@@ -281,13 +281,11 @@ in
           };
           format = "{icon}";
           format-icons = {
-            "No players found" = "ﱘ";
-            "Celluloid" = "";
-            "spotify" = "阮";
-            "ncspot" = "阮";
-            "qutebrowser" = "爵";
-            "discord" = "ﭮ";
-            "sublimemusic" = "";
+            "No players found" = " ";
+            "spotify" = " ";
+            "ncspot" = " ";
+            "discord" = "󰙯 ";
+            "sublimemusic" = " ";
           };
           on-click = "${playerctld} shift";
           on-click-right = "${playerctld} unshift";
@@ -300,9 +298,9 @@ in
           max-length = 30;
           format = "{icon} {}";
           format-icons = {
-            "Playing" = "契";
-            "Paused" = " ";
-            "Stopped" = "栗";
+            "Playing" = " ";
+            "Paused" = " ";
+            "Stopped" = " ";
           };
           on-click = "${playerctl} play-pause";
         };
@@ -320,18 +318,29 @@ in
         font-size: 12pt;
         padding: 0 8px;
       }
+      .modules-center {
+        background-color: #${colors.base0B};
+        color: #${colors.base00};
+        border-radius: 10px;
+      }
       .modules-right {
         margin-right: -15;
+        background-color: #${colors.base0B};
+        color: #${colors.base00};
+        border-radius: 10px;
       }
       .modules-left {
         margin-left: -15;
+        background-color: #${colors.base0B};
+        color: #${colors.base00};
+        border-radius: 10px;
       }
       window#waybar.top {
         opacity: 0.95;
         padding: 0;
         background-color: #${colors.base00};
-        border: 2px solid #${colors.base0C};
         border-radius: 10px;
+        margin: 0;
       }
       window#waybar.bottom {
         opacity: 0.90;
@@ -341,6 +350,8 @@ in
       }
       window#waybar {
         color: #${colors.base05};
+        border-radius: 0px;
+        margin: 0;
       }
       #workspaces button {
         background-color: #${colors.base01};
@@ -366,11 +377,12 @@ in
         border-radius: 10px;
       }
       #custom-menu {
+        font-size: 15pt;
         background-color: #${colors.base0C};
         color: #${colors.base00};
         padding-left: 15px;
-        padding-right: 22px;
-        margin-left: 0;
+        padding-right: 15px;
+        margin-left: -6;
         margin-right: 10px;
         margin-top: 0;
         margin-bottom: 0;
@@ -381,7 +393,7 @@ in
         color: #${colors.base00};
         padding-left: 15px;
         padding-right: 18px;
-        margin-right: 0;
+        margin-right: -6;
         margin-top: 0;
         margin-bottom: 0;
         border-radius: 10px;
