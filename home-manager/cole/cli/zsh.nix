@@ -7,7 +7,7 @@ rec {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true; # Needs config in nixos: environment.pathsToLink = [ "/share/zsh" ];
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     autocd = true;
     defaultKeymap = "viins";
     plugins = [

@@ -27,7 +27,10 @@
 
       terminal = "${pkgs.foot}/bin/foot";
       browser = "${pkgs.firefox}/bin/firefox";
-      launcher = "${pkgs.anyrun}/bin/anyrun";
+      launcher = let
+          anyrun = lib.getExe config.programs.anyrun.package;
+          libstdin = "${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so";
+        in "${anyrun} --plugins ${libstdin}";
     in
     {
       enable = true;
