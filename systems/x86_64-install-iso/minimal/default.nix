@@ -8,7 +8,7 @@
   stardust = {
     system = {
       locale.enable = true;
+      time.enable = true;
     };
   };
-  system.stateVersion = "23.11";
 }
