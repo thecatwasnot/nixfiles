@@ -3,12 +3,12 @@
   lib,
   ...
 }:
-
+with lib.stardust;
 {
   stardust = {
     system = {
-      locale.enable = true;
-      time.enable = true;
+      locale = enabled;
+      time = enabled;
     };
   };
 }
