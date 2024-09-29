@@ -1,22 +1,20 @@
 {
   config,
   lib,
+  namespace,
   ...
 }:
-with lib; {
+with lib;
+with lib.${namespace};
+let
+  cfg = config.${namespace}.system.time;
+in
+  {
   options.stardust.system.time = {
-    enable = mkOption {
-      default = false;
-      type = with types; bool;
-      description = "Weather or not to manage timezone settings";
-    };
+    enable = mkBoolOpt false "Weather or not to manage timezone settings";
   };
 
-  config = let
-    inherit (config.stardust.system.time) enable;
-  in mkMerge [
-    (mkIf enable {
+  config = mkIf cfg.enable {
       time.timeZone = "America/Chicago";
-    })
-  ];
+  };
 }
