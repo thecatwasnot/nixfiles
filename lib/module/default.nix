@@ -7,7 +7,6 @@ rec {
   #### Created by:  https://github.com/jakehamilton
   #### Source from: https://github.com/jakehamilton/config/blob/main/lib/module/default.nix
 
-
   ## Create a NixOS module option.
   ##
   ## ```nix
@@ -19,7 +18,7 @@ rec {
     type: default: description:
     mkOption { inherit type default description; };
 
-# Create a NixOS module option without a description.
+  # Create a NixOS module option without a description.
   ##
   ## ```nix
   ## lib.mkOpt' nixpkgs.lib.types.str "My default"

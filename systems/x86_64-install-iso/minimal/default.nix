@@ -1,13 +1,14 @@
 {
   config,
   lib,
+  namespace,
   ...
 }:
-with lib.stardust;
+with lib.${namespace};
 {
-  stardust = {
-    nix = enabled;
+  ${namespace} = {
     system = {
+      nix = enabled;
       locale = enabled;
       time = enabled;
     };
