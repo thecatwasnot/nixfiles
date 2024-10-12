@@ -38,6 +38,11 @@
           title = "StarDust";
         };
         namespace = "stardust";
+
+        systems.modules.nixos = with inputs; [
+          disko.nixosModules.disko
+        ];
+
       };
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };

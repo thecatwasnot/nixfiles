@@ -1,10 +1,16 @@
 {
+  inputs,
   lib,
   namespace,
   ...
 }:
+with lib;
 with lib.${namespace};
 {
+  imports = [
+    ./disks.nix
+  ];
+
   ${namespace} = {
     system = {
       boot.efi = enabled;
@@ -18,7 +24,6 @@ with lib.${namespace};
     hardware = {
       disko = {
         enable = true;
-        disk = "/dev/sda";
       };
       networking = {
         enable = true;
