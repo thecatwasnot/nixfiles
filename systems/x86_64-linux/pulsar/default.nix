@@ -12,9 +12,9 @@ with lib.${namespace};
     system = {
       boot.efi = enabled;
       locale = enabled;
-      time = enbled;
+      time = enabled;
       nix = enabled;
-      impermanance = enabled;
+      impermanence = enabled;
     };
     hardware.networking = enabled;
     security.sops = enabled;
