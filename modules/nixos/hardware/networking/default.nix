@@ -18,6 +18,7 @@ in
   config = mkMerge [
     (mkIf cfg.enable {
       systemd.network.enable = true;
+      networking.useNetworkd = true;
       systemd.network.networks."10-wired" = {
         matchConfig.Name = "en*";
         networkConfig.DHCP = "ipv4";
