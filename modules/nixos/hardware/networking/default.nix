@@ -22,6 +22,7 @@ in
         matchConfig.Name = "en*";
         networkConfig.DHCP = "ipv4";
         networkConfig.IPv6AcceptRA = true;
+        dhcpV4Config.useDomains = "yes";
       };
     })
     (mkIf (cfg.enable && cfg.wireless) {
