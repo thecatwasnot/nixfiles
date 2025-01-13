@@ -11,18 +11,19 @@ let
 in
 {
   options.${namespace}.hardware.networking = {
-    enable = mkBoolOpt false "Weather or not to manage networking with systemd-networkd";
-    wireless = mkBoolOpt false "Weatehr to enable wireless networking.";
+    enable = mkBoolOpt false "Weather or not to manage networking with systemd-networkd.";
+    wireless = mkBoolOpt false "Weather or not to enable wireless networking.";
   };
 
   config = mkMerge [
     (mkIf cfg.enable {
       systemd.network.enable = true;
+      networking.useDHCP = false;
       systemd.network.networks."10-wired" = {
         matchConfig.Name = "en*";
         networkConfig.DHCP = "ipv4";
         networkConfig.IPv6AcceptRA = true;
-        dhcpV4Config.useDomains = "yes";
+        dhcpV4Config.UseDomains = "yes";
       };
     })
     (mkIf (cfg.enable && cfg.wireless) {
