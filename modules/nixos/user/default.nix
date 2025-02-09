@@ -37,5 +37,7 @@ in {
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
         '';
     };
+    # Allow users to maintain userid through reboots with impermanence
+    environment.persist.directories = [ "/var/lib/nixos" ];
   };
 }
