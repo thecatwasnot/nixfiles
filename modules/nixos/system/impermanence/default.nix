@@ -3,6 +3,7 @@
   inputs,
   lib,
   namespace,
+  options,
   ...
 }:
 with lib;
@@ -22,11 +23,12 @@ in
 
   imports = with inputs; [
     impermanence.nixosModules.impermanence
-    #persist-retro.nixosModules.persist-retro
+    persist-retro.nixosModules.persist-retro
   ];
 
   config = mkIf cfg.enable {
-    #environment.persistence."/persist" = mkIf cfg.enable (mkAliasDefinitions options.environment.persist);
+    programs.fuse.userAllowOther = true;
+    environment.persistence."/persist" = mkAliasDefinitions options.environment.persist;
     boot.initrd.systemd = {
       enable = true;
       services.rollback = {
@@ -36,7 +38,7 @@ in
         ];
         after = [
           # LUKS/TPM process
-          "systemd-cryptsetup@enc.service"
+          "systemd-cryptsetup@cryptroot.service"
         ];
         before = [
           "sysroot.mount"
@@ -76,21 +78,6 @@ in
           # Once we're done rolling back to a blank snapshot,
           # we can unmount /mnt and continue on the boot process.
           umount /mnt
-        '';
-      };
-      services.persisted-files = {
-        description = "Hard-link persisted files from /persist";
-        wantedBy = [
-          "initrd.target"
-        ];
-        after = [
-          "sysroot.mount"
-        ];
-        unitConfig.DefaultDependencies = "no";
-        serviceConfig.Type = "oneshot";
-        script = ''
-          mkdir -p /sysroot/etc/
-          ln -snfT /persist/etc/machine-id /sysroot/etc/machine-id
         '';
       };
     };
