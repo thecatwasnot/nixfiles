@@ -39,8 +39,8 @@
                   extraArgs = ["-L" "nixos" "-f"];
                   #Create the blank snapshot for impermenence
                   postCreateHook = ''
-                    mount -t btrfs /dev/disk/by-label/nixos /mnt
-                    btrfs subvolume snapshot -r /mnt /mnt/root-blank
+                    mount -t btrfs /dev/mapper/cryptroot /mnt
+                    btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
                     umount /mnt
                   '';
                   subvolumes = {
