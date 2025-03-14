@@ -38,7 +38,8 @@ in
         ];
         after = [
           # LUKS/TPM process
-          "systemd-cryptsetup@cryptroot.service"
+          "systemd-cryptsetup@p1.service"
+          "systemd-cryptsetup@p2.service"
         ];
         before = [
           "sysroot.mount"
@@ -49,7 +50,7 @@ in
           mkdir -p /mnt
           # We first mount the btrfs root to /mnt
           # so we can manipulate btrfs subvolumes.
-          mount -o subvol=/ /dev/mapper/cryptroot /mnt
+          mount -o subvol=/ /dev/mapper/p1 /mnt
           # While we're tempted to just delete /root and create
           # a new snapshot from /root-blank, /root is already
           # populated at this point with a number of subvolumes,
