@@ -28,17 +28,24 @@
 
   outputs =
     inputs:
-    inputs.snowfall-lib.mkFlake {
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
+
+        snowfall = {
+          meta = {
+            name = "stardust";
+            title = "StarDust";
+          };
+          namespace = "stardust";
+        };
+      };
+    in
+    lib.mkFlake {
       inherit inputs;
       src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "stardust";
-          title = "StarDust";
-        };
-        namespace = "stardust";
-      };
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
       ];
