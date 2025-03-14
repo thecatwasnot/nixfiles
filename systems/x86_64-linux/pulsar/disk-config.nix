@@ -21,12 +21,34 @@
                 ];
               };
             };
-            luks = {
+            crypt_p1 = {
               size = "100%";
-              label = "luks";
               content = {
                 type = "luks";
-                name = "cryptroot";
+                name = "p1";
+                extraOpenArgs = [
+                  "--allow-discards"
+                  "--perf-no_read_workqueue"
+                  "--perf-no_write_workqueue"
+                ];
+                # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
+                settings = {crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];};
+              };
+            };
+          };
+        };
+      };
+      sdb = {
+        type = "disk";
+        device = "/dev/sdb";
+        content = {
+          type = "gpt";
+          partitions = {
+            crypt_p2 = {
+              size = "100%";
+              content = {
+                type = "luks";
+                name = "p2";
                 extraOpenArgs = [
                   "--allow-discards"
                   "--perf-no_read_workqueue"
@@ -36,10 +58,11 @@
                 settings = {crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];};
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-L" "nixos" "-f"];
+                  extraArgs = ["-L" "nixos" "-f" "-d raid1" "/dev/mapper/p1"];
                   #Create the blank snapshot for impermenence
                   postCreateHook = ''
-                    mount -t btrfs /dev/mapper/cryptroot /mnt
+                    btrfs device scan
+                    mount -t btrfs /dev/mapper/p1 /mnt
                     btrfs subvolume snapshot -r /mnt/root /mnt/root-blank
                     umount /mnt
                   '';
