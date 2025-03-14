@@ -17,12 +17,12 @@
                 format = "vfat";
                 mountpoint = "/boot";
                 mountOptions = [
-                  "defaults"
+                  "umask=0077"
                 ];
               };
             };
             crypt_p1 = {
-              size = "100%";
+              end = "-32G";
               content = {
                 type = "luks";
                 name = "p1";
@@ -35,6 +35,14 @@
                 settings = {crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];};
               };
             };
+            plain_swap = {
+              size = "100%";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = true; #resume from hibernation from this device
+              };
+            };
           };
         };
       };
@@ -45,7 +53,7 @@
           type = "gpt";
           partitions = {
             crypt_p2 = {
-              size = "100%";
+              end = "-32G";
               content = {
                 type = "luks";
                 name = "p2";
@@ -87,12 +95,16 @@
                       mountpoint = "/var/log";
                       mountOptions = ["subvol=log" "compress=zstd" "noatime"];
                     };
-                    "/swap" = {
-                      mountpoint = "/swap";
-                      swap.swapfile.size = "32G";
-                    };
                   };
                 };
+              };
+            };
+            encrypted_swap = {
+              size = "100%";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+                priority = 100; #prefer encrypted swap
               };
             };
           };
