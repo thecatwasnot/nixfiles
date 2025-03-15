@@ -39,5 +39,11 @@ in {
     };
     # Allow users to maintain userid through reboots with impermanence
     environment.persist.directories = [ "/var/lib/nixos" ];
+
+    # Configure home-manager
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+    };
   };
 }
