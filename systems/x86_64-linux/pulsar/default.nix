@@ -1,4 +1,10 @@
-{ config, lib, namespace, pkgs, ... }:
+{ 
+  config, 
+  lib, 
+  namespace, 
+  pkgs, 
+  ... 
+}:
 with lib;
 with lib.${namespace};
 {
@@ -17,6 +23,7 @@ with lib.${namespace};
       impermanence = enabled;
     };
     hardware.networking = enabled;
+    security.yubikey = enabled;
     security.sops = enabled;
     services.openssh = enabled;
     tools = {
