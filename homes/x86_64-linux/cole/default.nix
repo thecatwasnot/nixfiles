@@ -11,5 +11,6 @@ with lib.${namespace};
   #${namespace} = {
   stardust = {
     user = enabled;
+    security.gpg = enabled;
   };
 }
