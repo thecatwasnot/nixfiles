@@ -12,5 +12,6 @@ with lib.${namespace};
   stardust = {
     user = enabled;
     security.gpg = enabled;
+    tools.git = enabled;
   };
 }
