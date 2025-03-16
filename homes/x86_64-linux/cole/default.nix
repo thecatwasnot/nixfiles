@@ -11,6 +11,7 @@ with lib.${namespace};
   #${namespace} = {
   stardust = {
     user = enabled;
+    shells.zsh = enabled;
     security.gpg = enabled;
     tools.git = enabled;
   };

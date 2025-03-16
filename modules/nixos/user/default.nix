@@ -25,18 +25,10 @@ in {
       extraGroups = mkIf cfg.isAdmin [ "wheel" ];
       shell = pkgs.zsh;
     };
-    programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestions.enable = true;
-      histFile = "$XDG_CACHE_HOME/zsh.history";
-      shellInit =
-        ''
-          set -o vi
-          # Improved vim bindings.
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        '';
-    };
+    # Enable zsh default shell so nix works correctly
+    programs.zsh = enabled;
+    # Let zsh autocomplete have system packages
+    environment.pathsToLink = [ "/share/zsh" ];
     # Allow users to maintain userid through reboots with impermanence
     environment.persist.directories = [ "/var/lib/nixos" ];
 
