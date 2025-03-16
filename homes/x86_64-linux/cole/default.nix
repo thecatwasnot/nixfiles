@@ -14,5 +14,6 @@ with lib.${namespace};
     shells.zsh = enabled;
     security.gpg = enabled;
     tools.git = enabled;
+    tools.ssh = enabled;
   };
 }
