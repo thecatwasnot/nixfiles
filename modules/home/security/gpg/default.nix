@@ -60,11 +60,13 @@ in
       maxCacheTtl = 120;
       pinentryPackage = pkgs.pinentry-curses;
       enableSshSupport = true;
+      sshKeys = [ "28B380DAD59610FF6BDFB85825670A56DF230988" ];
       enableZshIntegration = mkIf (shells.zsh.enable or true);
       extraConfig = ''
         ttyname $GPG_TTY
       '';
     };
+    services.ssh.startAgent = false;
 
   };
 }
