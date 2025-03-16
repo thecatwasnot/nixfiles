@@ -13,7 +13,7 @@ let
 in
 {
   options.${namespace}.security.yubikey = {
-    enable = mkBoolOpt false "Weather to use pam for u2f configuration.";
+    enable = mkBoolOpt false "Enable yubikey for authentication.";
   };
 
   config = mkIf cfg.enable {
