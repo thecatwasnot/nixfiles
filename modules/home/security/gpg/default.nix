@@ -13,6 +13,11 @@ with lib.${namespace};
 let
   cfg = config.${namespace}.security.gpg;
   shells = config.${namespace}.shells;
+  yubikey = osConfig.${namespace}.security.yubikey;
+
+  reload-yubikey = pkgs.writeShellScriptBin "reload-yubikey" ''
+    ${pkgs.gnupg}/bin/gpg-connect-agent "scd serialno" "learn --force" /bye
+  '';
 in
 {
   options.${namespace}.security.gpg = {
@@ -21,11 +26,11 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       pinentry-curses
-    ];
+    ] ++ lib.optional yubikey.enable reload-yubikey;
 
     programs.gpg = {
       enable = true;
-      scdaemonSettings = mkIf (osConfig.${namespace}.security.yubikey.enable or false) {
+      scdaemonSettings = mkIf (yubikey.enable or false) {
         disable-ccid = true;
       };
 
@@ -68,6 +73,5 @@ in
     };
     # Make sure ssh agent is off since we're using gpg agent
     services.ssh-agent.enable = false;
-
   };
 }
