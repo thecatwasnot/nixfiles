@@ -12,10 +12,13 @@ let
 in
 {
   options.${namespace}.tools.vim = {
-    enable = mkBoolOpt false "Weather to install vim.";
+    enable = mkBoolOpt false "Install vim.";
+    defaultEditor = mkBoolOpt false "Make vim the default editor.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ vim ];
+    programs.vim = {
+      inherit (cfg) enable defaultEditor;
+    };
   };
 }

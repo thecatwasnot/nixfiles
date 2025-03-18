@@ -28,7 +28,10 @@ with lib.${namespace};
     services.openssh = enabled;
     tools = {
       git = enabled;
-      vim = enabled;
+      vim = {
+        enable = true;
+        defaultEditor = true;
+      };
     }; 
   };
 
