@@ -1,0 +1,20 @@
+keys:
+  - &users:
+    - &cole AEFF4E9E3CD49283A3AEABB88ECA55FD05C67FF0
+  - &hosts:
+    - &pulsar age1y24tyr3fyfpflk03s0f7drctfqn9ez99kc3mfx38evj692d5cucq40uwt2
+
+# Requires both gpg user and age host key
+creation_rules:
+  - path_regex: systems/x86_64-linux/pulsar/secrets.ya?ml$
+    key_groups:
+      - pgp:
+        - *cole
+        age:
+        - *pulsar
+  - path_regex: systems/secrets.ya?ml$
+    key_groups:
+      - pgp:
+        - *cole
+        age:
+        - *pulsar

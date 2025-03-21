@@ -10,6 +10,7 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.user;
+  sops = config.${namespace}.security.sops;
 in {
   options.${namespace}.user = with types; {
     name = mkOpt str "cole" "The name of the user's account";
@@ -21,7 +22,11 @@ in {
     users.mutableUsers = false;
     users.users.${cfg.name} = {
       isNormalUser = true;
-      inherit (cfg) initialPassword;
+
+      # Set user password, we'd prefer the one in sops secrets but fallback to configured password
+      hashedPasswordFile = mkIf sops.enable config.sops.secrets."${cfg.name}_passwd".path;
+      initialPassword = mkIf (!sops.enable) cfg.initialPassword; 
+
       extraGroups = mkIf cfg.isAdmin [ "wheel" ];
       shell = pkgs.zsh;
     };
@@ -36,6 +41,10 @@ in {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+    };
+    sops.secrets."${cfg.name}_passwd" = mkIf sops.enable {
+      sopsFile = ../../../systems/secrets.yaml;
+      neededForUsers = true;
     };
   };
 }

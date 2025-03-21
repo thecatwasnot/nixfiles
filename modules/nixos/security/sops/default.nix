@@ -3,6 +3,7 @@
   inputs,
   lib,
   namespace,
+  pkgs,
   ...
 }:
 with lib;
@@ -20,6 +21,14 @@ in
   ];
 
   config = mkIf cfg.enable {
-    sops.defaultSopsFormat = "yaml";
+    environment.systemPackages = with pkgs; [
+      sops
+      ssh-to-age
+    ];
+    sops = {
+     defaultSopsFormat = "yaml";
+     # Use the persisted key, it'll be mounted early
+     age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+    };
   };
 }
