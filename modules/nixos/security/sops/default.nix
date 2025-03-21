@@ -26,9 +26,9 @@ in
       ssh-to-age
     ];
     sops = {
-     defaultSopsFormat = "yaml";
-     # Use the persisted key, it'll be mounted early
-     age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+      defaultSopsFormat = "yaml";
+      # Use the persisted key, it'll be mounted early
+      age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
     };
   };
 }

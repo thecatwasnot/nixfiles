@@ -1,18 +1,17 @@
-{ 
-  config, 
-  lib, 
-  namespace, 
-  pkgs, 
-  ... 
+{
+  config,
+  lib,
+  namespace,
+  pkgs,
+  ...
 }:
 with lib;
 with lib.${namespace};
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ./disk-config.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./disk-config.nix
+  ];
 
   ${namespace} = {
     system = {
@@ -32,7 +31,7 @@ with lib.${namespace};
         enable = true;
         defaultEditor = true;
       };
-    }; 
+    };
   };
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -55,4 +54,3 @@ with lib.${namespace};
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-

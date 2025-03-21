@@ -10,11 +10,12 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.shells.zsh;
-in {
+in
+{
   options.${namespace}.shells.zsh = {
     enable = mkBoolOpt false "Enable Zsh shell for this user";
   };
-  
+
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = true;

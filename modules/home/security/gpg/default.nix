@@ -4,7 +4,7 @@
   lib,
   namespace,
   options,
-  osConfig ? {},
+  osConfig ? { },
   pkgs,
   ...
 }:
@@ -24,9 +24,12 @@ in
     enable = mkBoolOpt false "Weather to enable gpg";
   };
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      pinentry-curses
-    ] ++ lib.optional yubikey.enable reload-yubikey;
+    home.packages =
+      with pkgs;
+      [
+        pinentry-curses
+      ]
+      ++ lib.optional yubikey.enable reload-yubikey;
 
     programs.gpg = {
       enable = true;
@@ -57,8 +60,8 @@ in
         throw-keyids = true;
       };
     };
-    
-    services.gpg-agent = { 
+
+    services.gpg-agent = {
       enable = true;
 
       defaultCacheTtl = 60;

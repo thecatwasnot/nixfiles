@@ -10,7 +10,7 @@ let
   cfg = config.${namespace}.tools.ssh;
 in
 {
-  options.${namespace}.tools.ssh  = {
+  options.${namespace}.tools.ssh = {
     enable = mkBoolOpt false "Enable home-manager ssh control.";
   };
 

@@ -32,7 +32,12 @@
                   "--perf-no_write_workqueue"
                 ];
                 # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
-                settings = {crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];};
+                settings = {
+                  crypttabExtraOpts = [
+                    "fido2-device=auto"
+                    "token-timeout=10"
+                  ];
+                };
               };
             };
             plain_swap = {
@@ -40,7 +45,7 @@
               content = {
                 type = "swap";
                 discardPolicy = "both";
-                resumeDevice = true; #resume from hibernation from this device
+                resumeDevice = true; # resume from hibernation from this device
               };
             };
           };
@@ -63,10 +68,21 @@
                   "--perf-no_write_workqueue"
                 ];
                 # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
-                settings = {crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];};
+                settings = {
+                  crypttabExtraOpts = [
+                    "fido2-device=auto"
+                    "token-timeout=10"
+                  ];
+                };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-L" "nixos" "-f" "-d raid1" "/dev/mapper/p1"];
+                  extraArgs = [
+                    "-L"
+                    "nixos"
+                    "-f"
+                    "-d raid1"
+                    "/dev/mapper/p1"
+                  ];
                   #Create the blank snapshot for impermenence
                   postCreateHook = ''
                     btrfs device scan
@@ -77,23 +93,43 @@
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions = ["subvol=root" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=root"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/home" = {
                       mountpoint = "/home";
-                      mountOptions = ["subvol=home" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=home"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=nix"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/persist" = {
                       mountpoint = "/persist";
-                      mountOptions = ["subvol=persist" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=persist"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/log" = {
                       mountpoint = "/var/log";
-                      mountOptions = ["subvol=log" "compress=zstd" "noatime"];
+                      mountOptions = [
+                        "subvol=log"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                   };
                 };
@@ -104,7 +140,7 @@
               content = {
                 type = "swap";
                 randomEncryption = true;
-                priority = 100; #prefer encrypted swap
+                priority = 100; # prefer encrypted swap
               };
             };
           };

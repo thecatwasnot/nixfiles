@@ -11,7 +11,8 @@ let
 
   user = config.${namespace}.user;
   gpg = config.${namespace}.security.gpg;
-in {
+in
+{
   options.${namespace}.tools.git = with types; {
     enable = mkBoolOpt false "Weather to enable git configuration.";
 

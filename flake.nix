@@ -61,13 +61,13 @@
       ];
 
       # Use treefmt to format entire repo
-      outputs-builder = 
-        channels: 
+      outputs-builder =
+        channels:
         let
           treefmtEval = inputs.treefmt.lib.evalModule channels.nixpkgs ./treefmt.nix;
         in
-        { 
-          formatter = treefmtEval.config.build.wrapper; 
+        {
+          formatter = treefmtEval.config.build.wrapper;
           checks.formatting = treefmtEval.config.build.check inputs.self;
         };
     };
