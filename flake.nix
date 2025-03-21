@@ -16,6 +16,12 @@
     impermanence.url = "github:nix-community/impermanence";
     persist-retro.url = "github:Geometer1729/persist-retro";
 
+    # In order to build system images and artifacts supported by nixos-generators.
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,9 +29,8 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    # In order to build system images and artifacts supported by nixos-generators.
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -55,6 +60,15 @@
         home-manager.nixosModules.home-manager
       ];
 
-      outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
+      # Use treefmt to format entire repo
+      outputs-builder = 
+        channels: 
+        let
+          treefmtEval = inputs.treefmt.lib.evalModule channels.nixpkgs ./treefmt.nix;
+        in
+        { 
+          formatter = treefmtEval.config.build.wrapper; 
+          checks.formatting = treefmtEval.config.build.check inputs.self;
+        };
     };
 }
