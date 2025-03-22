@@ -1,0 +1,51 @@
+00:00:00.000 [INFO] [sway/main.c:295] swayfx version 0.5 (based on sway version 1.10.1)
+00:00:00.000 [INFO] [sway/main.c:296] wlroots version 0.18.2
+00:00:00.000 [INFO] [sway/main.c:297] scenefx version 0.2.1
+00:00:00.014 [INFO] [sway/main.c:81] Linux pulsar 6.12.17 #1-NixOS SMP PREEMPT_DYNAMIC Thu Feb 27 12:30:24 UTC 2025 x86_64 GNU/Linux
+00:00:00.014 [INFO] [sway/main.c:97] Contents of /etc/lsb-release:
+00:00:00.014 [INFO] [sway/main.c:81] DISTRIB_CODENAME=warbler
+00:00:00.014 [INFO] [sway/main.c:81] DISTRIB_DESCRIPTION="NixOS 25.05 (Warbler)"
+00:00:00.014 [INFO] [sway/main.c:81] DISTRIB_ID=nixos
+00:00:00.014 [INFO] [sway/main.c:81] DISTRIB_RELEASE="25.05"
+00:00:00.014 [INFO] [sway/main.c:81] LSB_VERSION="25.05 (Warbler)"
+00:00:00.014 [INFO] [sway/main.c:97] Contents of /etc/os-release:
+00:00:00.014 [INFO] [sway/main.c:81] ANSI_COLOR="0;38;2;126;186;228"
+00:00:00.014 [INFO] [sway/main.c:81] BUG_REPORT_URL="https://github.com/NixOS/nixpkgs/issues"
+00:00:00.014 [INFO] [sway/main.c:81] BUILD_ID="25.05.20250306.10069ef"
+00:00:00.014 [INFO] [sway/main.c:81] CPE_NAME="cpe:/o:nixos:nixos:25.05"
+00:00:00.014 [INFO] [sway/main.c:81] DEFAULT_HOSTNAME=nixos
+00:00:00.014 [INFO] [sway/main.c:81] DOCUMENTATION_URL="https://nixos.org/learn.html"
+00:00:00.014 [INFO] [sway/main.c:81] HOME_URL="https://nixos.org/"
+00:00:00.014 [INFO] [sway/main.c:81] ID=nixos
+00:00:00.014 [INFO] [sway/main.c:81] ID_LIKE=""
+00:00:00.014 [INFO] [sway/main.c:81] IMAGE_ID=""
+00:00:00.014 [INFO] [sway/main.c:81] IMAGE_VERSION=""
+00:00:00.014 [INFO] [sway/main.c:81] LOGO="nix-snowflake"
+00:00:00.015 [INFO] [sway/main.c:81] NAME=NixOS
+00:00:00.015 [INFO] [sway/main.c:81] PRETTY_NAME="NixOS 25.05 (Warbler)"
+00:00:00.015 [INFO] [sway/main.c:81] SUPPORT_URL="https://nixos.org/community.html"
+00:00:00.015 [INFO] [sway/main.c:81] VARIANT=""
+00:00:00.015 [INFO] [sway/main.c:81] VARIANT_ID=""
+00:00:00.015 [INFO] [sway/main.c:81] VENDOR_NAME=NixOS
+00:00:00.015 [INFO] [sway/main.c:81] VENDOR_URL="https://nixos.org/"
+00:00:00.015 [INFO] [sway/main.c:81] VERSION="25.05 (Warbler)"
+00:00:00.015 [INFO] [sway/main.c:81] VERSION_CODENAME=warbler
+00:00:00.015 [INFO] [sway/main.c:81] VERSION_ID="25.05"
+00:00:00.015 [INFO] [sway/main.c:69] LD_LIBRARY_PATH=
+00:00:00.015 [INFO] [sway/main.c:69] LD_PRELOAD=
+00:00:00.015 [INFO] [sway/main.c:69] PATH=/run/wrappers/bin:/home/cole/.nix-profile/bin:/nix/profile/bin:/home/cole/.local/state/nix/profile/bin:/etc/profiles/per-user/cole/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/home/cole/.zsh/plugins/vi-mode
+00:00:00.015 [INFO] [sway/main.c:69] SWAYSOCK=
+00:00:00.015 [INFO] [sway/main.c:333] Starting swayfx version 0.5 (based on sway version 1.10.1)
+00:00:00.015 [INFO] [wlr] [libseat] [libseat/backend/seatd.c:64] Could not connect to socket /run/seatd.sock: No such file or directory
+00:00:00.015 [INFO] [wlr] [libseat] [libseat/libseat.c:76] Backend 'seatd' failed to open seat, skipping
+00:00:00.018 [INFO] [wlr] [libseat] [libseat/libseat.c:73] Seat opened with backend 'logind'
+00:00:00.018 [INFO] [wlr] [backend/session/session.c:108] Successfully loaded libseat session
+00:00:00.024 [INFO] [wlr] [backend/backend.c:256] Found 1 GPUs
+00:00:00.024 [INFO] [wlr] [backend/drm/backend.c:185] Initializing DRM backend for /dev/dri/card0 (radeon)
+00:00:00.024 [INFO] [wlr] [backend/drm/drm.c:310] Found 6 DRM CRTCs
+00:00:00.024 [INFO] [wlr] [backend/drm/drm.c:268] Found 6 DRM planes
+00:00:00.073 [INFO] [wlr] [render/egl.c:205] Supported EGL client extensions: EGL_EXT_device_base EGL_EXT_device_enumeration EGL_EXT_device_query EGL_EXT_platform_base EGL_KHR_client_get_all_proc_addresses EGL_EXT_client_extensions EGL_KHR_debug EGL_EXT_platform_device EGL_EXT_explicit_device EGL_EXT_platform_wayland EGL_KHR_platform_wayland EGL_EXT_platform_x11 EGL_KHR_platform_x11 EGL_EXT_platform_xcb EGL_MESA_platform_gbm EGL_KHR_platform_gbm EGL_MESA_platform_surfaceless
+libEGL warning: egl: failed to create dri2 screen
+00:00:00.084 [ERROR] [wlr] [EGL] command: eglInitialize, error: EGL_NOT_INITIALIZED (0x3001), message: "DRI2: failed to create screen"
+libEGL warning: egl: failed to create dri2 screen
+00:00:00.090 [ERROR] [wlr] [EGL] command: eglInitialize, error: EGL_NOT_INITIALIZED (0x3001), message: "DRI2: failed to create screen"
