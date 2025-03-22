@@ -22,6 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +60,12 @@
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
+      ];
+
+      systems.hosts.pulsar.modules = with inputs; [
+        nixos-hardware.nixosModules.common-cpu-amd
+        nixos-hardware.nixosModules.common-gpu-amd
+        nixos-hardware.nixosModules.common-pc-ssd
       ];
 
       # Use treefmt to format entire repo
