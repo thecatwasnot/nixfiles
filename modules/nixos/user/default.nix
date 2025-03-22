@@ -28,7 +28,10 @@ in
       hashedPasswordFile = mkIf sops.enable config.sops.secrets."${cfg.name}_passwd".path;
       initialPassword = mkIf (!sops.enable) cfg.initialPassword;
 
-      extraGroups = mkIf cfg.isAdmin [ "wheel" ];
+      extraGroups = [
+        "video"
+        "audio"
+      ] ++ lib.optional cfg.isAdmin "wheel";
       shell = pkgs.zsh;
       
       openssh.authorizedKeys.keys = [
