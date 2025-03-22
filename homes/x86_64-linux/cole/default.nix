@@ -15,5 +15,7 @@ with lib.${namespace};
     security.gpg = enabled;
     tools.git = enabled;
     tools.ssh = enabled;
+
+    desktop.sway = enabled;
   };
 }
