@@ -17,11 +17,18 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = [ pkgs.swaybg ];
     wayland.windowManager.sway = {
       enable = true;
       package = pkgs.swayfx;
+      # Disable xwayland
+      xwayland = false;
+      config.bars = [ ];
       # fix for: https://github.com/nix-community/home-manager/issues/5379
       checkConfig = false;
+      extraConfig = ''
+        output * bg #000000 solid_color
+      '';
     };
   };
 }
