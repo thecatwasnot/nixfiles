@@ -25,7 +25,11 @@ with lib.${namespace};
     security.yubikey = enabled;
     security.sops = enabled;
     services.openssh = enabled;
-    services.display.sway = enabled;
+    services.display = {
+      sway = enabled;
+      pipewire = enabled;
+      tuigreet.enable = false;
+    };
     tools = {
       git = enabled;
       vim = {
