@@ -12,5 +12,13 @@ with lib.${namespace};
       locale = enabled;
       time = enabled;
     };
+    security = {
+      yubikey = enabled;
+      sops.tools = enabled;
+    };
+    user = {
+      name = "nixos";
+      initialPassword = "1";
+    };
   };
 }

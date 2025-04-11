@@ -13,22 +13,27 @@ let
 in
 {
   options.${namespace}.security.sops = {
-    enable = mkBoolOpt false "Weather to use sops-nix.";
+    enable = mkBoolOpt false "Use sops-nix.";
+    tools.enable = mkBoolOpt false "Install sops tools.";
   };
 
   imports = with inputs; [
     sops-nix.nixosModules.sops
   ];
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      sops
-      ssh-to-age
-    ];
-    sops = {
-      defaultSopsFormat = "yaml";
-      # Use the persisted key, it'll be mounted early
-      age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
-    };
-  };
+  config = mkMerge [
+    (mkIf (cfg.enable or cfg.tools.enable) {
+      environment.systemPackages = with pkgs; [
+        sops
+        ssh-to-age
+      ];
+    })
+    (mkIf cfg.enable {
+      sops = {
+        defaultSopsFormat = "yaml";
+        # Use the persisted key, it'll be mounted early
+        age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+      };
+    })
+  ];
 }
