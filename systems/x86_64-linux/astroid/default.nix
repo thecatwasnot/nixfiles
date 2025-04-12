@@ -9,12 +9,13 @@ with lib;
 with lib.${namespace};
 {
   imports = [
+    ./hardware-configuration.nix
     ./disk-config.nix
   ];
 
   ${namespace} = {
     system = {
-      boot.efi = enabled;
+      boot.bios = enabled;
       locale = enabled;
       time = enabled;
       nix = enabled;
@@ -31,4 +32,5 @@ with lib.${namespace};
       };
     };
   };
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
