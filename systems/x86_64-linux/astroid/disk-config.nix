@@ -7,18 +7,19 @@
         content = {
           type = "gpt";
           partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR, no UEFI on this system.
+            };
             ESP = {
-              label = "boot";
               name = "ESP";
-              size = "1024M";
+              size = "500M";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "umask=0077"
-                ];
+                mountOptions = [ "umask=0077" ];
               };
             };
             crypt = {
@@ -108,4 +109,6 @@
       };
     };
   };
+  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/var/log".neededForBoot = true;
 }
