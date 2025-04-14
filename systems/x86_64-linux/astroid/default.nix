@@ -24,6 +24,7 @@ with lib.${namespace};
     hardware.networking = enabled;
     security.sops = enabled;
     services.openssh = enabled;
+    services.zoneminder = enabled;
     tools = {
       git = enabled;
       vim = {
