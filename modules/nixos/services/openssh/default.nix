@@ -23,6 +23,10 @@ in
         PasswordAuthentication = false;
         PermitRootLogin = if format == "install-iso" then "yes" else "no";
       };
+      # For gpg agent forwarding to this machine.
+      extraConfig = ''
+        StreamLocalBindUnlink yes
+      '';
     };
 
     environment.persist = {
