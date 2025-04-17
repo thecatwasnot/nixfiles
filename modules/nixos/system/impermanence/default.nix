@@ -4,6 +4,7 @@
   lib,
   namespace,
   options,
+  pkgs,
   ...
 }:
 with lib;
@@ -82,5 +83,6 @@ in
         '';
       };
     };
+    environment.systemPackages = [ pkgs.${namespace}.ephemeral-btrfs-diff ];
   };
 }
