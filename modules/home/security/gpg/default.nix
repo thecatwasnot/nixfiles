@@ -25,65 +25,67 @@ in
     server = mkBoolOpt false "Enable gpg as a server with no local keys.";
   };
   config = mkMerge [
-    (mkIf (cfg.enable) { # Assume we're a server, add additonal config below for client machine.
+    (mkIf (cfg.enable) {
+      # Assume we're a server, add additonal config below for client machine.
 
-    programs.gpg = {
-      enable = true;
-      scdaemonSettings = mkIf (yubikey.enable or false) {
-        disable-ccid = true;
+      programs.gpg = {
+        enable = true;
+        scdaemonSettings = mkIf (yubikey.enable or false) {
+          disable-ccid = true;
+        };
+
+        settings = {
+          personal-cipher-preferences = "AES256 AES192 AES";
+          personal-digest-preferences = "SHA512 SHA384 SHA256";
+          personal-compress-preferences = "ZLIB BZIP2 ZIP Uncompressed";
+          default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
+          cert-digest-algo = "SHA512";
+          s2k-digest-algo = "SHA512";
+          s2k-cipher-algo = "AES256";
+          charset = "utf-8";
+          fixed-list-mode = true;
+          no-comments = true;
+          no-emit-version = true;
+          keyid-format = "0xlong";
+          list-options = "show-uid-validity";
+          verify-options = "show-uid-validity";
+          with-fingerprint = true;
+          require-secmem = true;
+          require-cross-certification = true;
+          no-symkey-cache = true;
+          use-agent = true;
+          throw-keyids = true;
+          no-autostart = true;
+        };
       };
 
-      settings = {
-        personal-cipher-preferences = "AES256 AES192 AES";
-        personal-digest-preferences = "SHA512 SHA384 SHA256";
-        personal-compress-preferences = "ZLIB BZIP2 ZIP Uncompressed";
-        default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
-        cert-digest-algo = "SHA512";
-        s2k-digest-algo = "SHA512";
-        s2k-cipher-algo = "AES256";
-        charset = "utf-8";
-        fixed-list-mode = true;
-        no-comments = true;
-        no-emit-version = true;
-        keyid-format = "0xlong";
-        list-options = "show-uid-validity";
-        verify-options = "show-uid-validity";
-        with-fingerprint = true;
-        require-secmem = true;
-        require-cross-certification = true;
-        no-symkey-cache = true;
-        use-agent = true;
-        throw-keyids = true;
-        no-autostart = true;
+    })
+    (mkIf (cfg.enable && !cfg.server) {
+      home.packages =
+        with pkgs;
+        [
+          pinentry-curses
+        ]
+        ++ lib.optional yubikey.enable reload-yubikey;
+
+      services.gpg-agent = {
+        enable = true;
+
+        defaultCacheTtl = 60;
+        maxCacheTtl = 120;
+        pinentryPackage = pkgs.pinentry-curses;
+        enableSshSupport = true;
+        sshKeys = [ "28B380DAD59610FF6BDFB85825670A56DF230988" ];
+        enableZshIntegration = (shells.zsh.enable or false);
+        extraConfig = ''
+          ttyname $GPG_TTY
+        '';
+        enableExtraSocket = true;
       };
-    };
-
-  })
-  ( mkIf (cfg.enable && !cfg.server) {
-    home.packages =
-      with pkgs;
-      [
-        pinentry-curses
-      ]
-      ++ lib.optional yubikey.enable reload-yubikey;
-
-    services.gpg-agent = {
-      enable = true;
-
-      defaultCacheTtl = 60;
-      maxCacheTtl = 120;
-      pinentryPackage = pkgs.pinentry-curses;
-      enableSshSupport = true;
-      sshKeys = [ "28B380DAD59610FF6BDFB85825670A56DF230988" ];
-      enableZshIntegration = (shells.zsh.enable or false);
-      extraConfig = ''
-        ttyname $GPG_TTY
-      '';
-      enableExtraSocket = true;
-    };
-    #gpg agent should be dead
-    programs.gpg.settings.no-autostart = false;
-    # Make sure ssh agent is off since we're using gpg agent
-    services.ssh-agent.enable = false;
-  })];
+      #gpg agent should be dead
+      programs.gpg.settings.no-autostart = false;
+      # Make sure ssh agent is off since we're using gpg agent
+      services.ssh-agent.enable = false;
+    })
+  ];
 }

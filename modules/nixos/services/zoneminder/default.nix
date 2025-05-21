@@ -29,6 +29,9 @@ in
       "d ${cfg.storageDir} 0770 zoneminder nginx -"
       "d /persist/var/lib/zoneminder/events 0770 zoneminder nginx -"
     ];
-    environment.persist.directories = [ "/var/lib/zoneminder" "/var/lib/mysql" ];
+    environment.persist.directories = [
+      "/var/lib/zoneminder"
+      "/var/lib/mysql"
+    ];
   };
 }
