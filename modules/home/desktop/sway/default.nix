@@ -22,6 +22,7 @@ in
       swaybg 
       autotiling
       foot
+      wayprompt
     ];
     wayland.windowManager.sway = {
       enable = true;
@@ -75,7 +76,6 @@ in
       # fix for: https://github.com/nix-community/home-manager/issues/5379
       checkConfig = false;
       extraConfig = ''
-        output * bg #000000 solid_color
         shadows enable
         corner_radius 12
         for_window [app_id="foot"] blur enable
@@ -83,5 +83,7 @@ in
         blur_passes 4
       '';
     };
+    services.gpg-agent.pinentry.package = mkForce pkgs.wayprompt;
+    services.gpg-agent.pinentry.program = mkForce "pinentry-wayprompt";
   };
 }

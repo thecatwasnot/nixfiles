@@ -27,6 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix.url = "github:nix-community/stylix";
+
     sops-nix.url = "github:Mic92/sops-nix";
 
     treefmt = {
@@ -58,6 +60,13 @@
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
+      ];
+
+      systems.hosts.pulsar.modules = with inputs; [
+        nixos-hardware.nixosModules.common-cpu-amd
+        nixos-hardware.nixosModules.common-gpu-amd
+        nixos-hardware.nixosModules.common-pc-ssd
+        stylix.nixosModules.stylix
       ];
 
       # Use treefmt to format entire repo
