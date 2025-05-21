@@ -2,7 +2,7 @@ keys:
   - &users:
     - &cole AEFF4E9E3CD49283A3AEABB88ECA55FD05C67FF0
   - &hosts:
-    - &astroid age120rfc7x4ejdg26lnkd8d9q66w6fw5ezcclx9xutkr7urhauue3fs08kqx6
+    - &astroid age1mazs0hzm2v2lvw5l24le9vfxfqsqy260j8v28n6l44pmhhqr2sqslcnm8m
     - &pulsar age1y24tyr3fyfpflk03s0f7drctfqn9ez99kc3mfx38evj692d5cucq40uwt2
 
 # Requires both gpg user and age host key
@@ -20,3 +20,4 @@ creation_rules:
         age:
         - *astroid
         - *pulsar
+
