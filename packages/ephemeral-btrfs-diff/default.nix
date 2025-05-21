@@ -1,33 +1,34 @@
 { writeShellApplication }:
 writeShellApplication {
   name = "ephemeral-btrfs-diff";
-  text = /* bash */ ''
-    set -euo pipefail
-    mkdir /tmp -p
-    MNTPOINT=$(mktemp -d)
-    (
-        # This assumes disk is labeled by hostname, maybe a good idea?
-        # sudo mount -t btrfs -o subvol=/ "/dev/disk/by-label/$(hostname)" "$MNTPOINT"
-        sudo mount -t btrfs -o subvol=/ "/dev/disk/by-label/nixos" "$MNTPOINT"
-        trap 'sudo umount "$MNTPOINT"' EXIT
-        OLD_TRANSID=$(sudo btrfs subvolume find-new "$MNTPOINT/root-blank" 9999999)
-        OLD_TRANSID=''${OLD_TRANSID#transid marker was }
+  text = # bash
+    ''
+      set -euo pipefail
+      mkdir /tmp -p
+      MNTPOINT=$(mktemp -d)
+      (
+          # This assumes disk is labeled by hostname, maybe a good idea?
+          # sudo mount -t btrfs -o subvol=/ "/dev/disk/by-label/$(hostname)" "$MNTPOINT"
+          sudo mount -t btrfs -o subvol=/ "/dev/disk/by-label/nixos" "$MNTPOINT"
+          trap 'sudo umount "$MNTPOINT"' EXIT
+          OLD_TRANSID=$(sudo btrfs subvolume find-new "$MNTPOINT/root-blank" 9999999)
+          OLD_TRANSID=''${OLD_TRANSID#transid marker was }
 
-        sudo btrfs subvolume find-new "$MNTPOINT/root" "$OLD_TRANSID" |
-        sed '$d' |
-        cut -f17- -d' ' |
-        sort |
-        uniq |
-        while read -r path; do
-            path="/$path"
-            if [ -L "$path" ]; then
-                : # The path is a symbolic link, so is probably handled by NixOS already
-            elif [ -d "$path" ]; then
-                : # The path is a directory, ignore
-            else
-                echo "$path"
-            fi
-        done
-    )
-  '';
+          sudo btrfs subvolume find-new "$MNTPOINT/root" "$OLD_TRANSID" |
+          sed '$d' |
+          cut -f17- -d' ' |
+          sort |
+          uniq |
+          while read -r path; do
+              path="/$path"
+              if [ -L "$path" ]; then
+                  : # The path is a symbolic link, so is probably handled by NixOS already
+              elif [ -d "$path" ]; then
+                  : # The path is a directory, ignore
+              else
+                  echo "$path"
+              fi
+          done
+      )
+    '';
 }
