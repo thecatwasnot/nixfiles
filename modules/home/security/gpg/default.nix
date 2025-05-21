@@ -21,15 +21,11 @@ let
 in
 {
   options.${namespace}.security.gpg = {
-    enable = mkBoolOpt false "Weather to enable gpg";
+    enable = mkBoolOpt false "Enable gpg";
+    server = mkBoolOpt false "Enable gpg as a server with no local keys.";
   };
-  config = mkIf cfg.enable {
-    home.packages =
-      with pkgs;
-      [
-        pinentry-curses
-      ]
-      ++ lib.optional yubikey.enable reload-yubikey;
+  config = mkMerge [
+    (mkIf (cfg.enable) { # Assume we're a server, add additonal config below for client machine.
 
     programs.gpg = {
       enable = true;
@@ -58,8 +54,18 @@ in
         no-symkey-cache = true;
         use-agent = true;
         throw-keyids = true;
+        no-autostart = true;
       };
     };
+
+  })
+  ( mkIf (cfg.enable && !cfg.server) {
+    home.packages =
+      with pkgs;
+      [
+        pinentry-curses
+      ]
+      ++ lib.optional yubikey.enable reload-yubikey;
 
     services.gpg-agent = {
       enable = true;
@@ -73,8 +79,11 @@ in
       extraConfig = ''
         ttyname $GPG_TTY
       '';
+      enableExtraSocket = true;
     };
+    #gpg agent should be dead
+    programs.gpg.settings.no-autostart = false;
     # Make sure ssh agent is off since we're using gpg agent
     services.ssh-agent.enable = false;
-  };
+  })];
 }

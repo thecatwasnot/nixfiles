@@ -22,6 +22,7 @@ in
       settings = {
         PasswordAuthentication = false;
         PermitRootLogin = if format == "install-iso" then "yes" else "no";
+        GatewayPorts = "yes";
       };
       # For gpg agent forwarding to this machine.
       extraConfig = ''
