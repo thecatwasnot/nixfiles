@@ -27,6 +27,10 @@
               content = {
                 type = "luks";
                 name = "p1";
+                settings = {
+                  keyFile = "/dev/disk/by-id/usb-Verbatim_STORE_N_GO_BFA8831CD319CD78-0:0";
+                  keyFileSize = 4096;
+                };
                 extraOpenArgs = [
                   "--allow-discards"
                   "--perf-no_read_workqueue"
