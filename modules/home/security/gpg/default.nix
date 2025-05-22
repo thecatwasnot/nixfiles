@@ -73,7 +73,7 @@ in
 
         defaultCacheTtl = 60;
         maxCacheTtl = 120;
-        pinentryPackage = pkgs.pinentry-curses;
+        pinentry.package = pkgs.pinentry-curses;
         enableSshSupport = true;
         sshKeys = [ "28B380DAD59610FF6BDFB85825670A56DF230988" ];
         enableZshIntegration = (shells.zsh.enable or false);
