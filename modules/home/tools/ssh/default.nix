@@ -26,6 +26,7 @@ in
              host
            ])
            hostnames));
+          forwardAgent = true;
           remoteForwards = [
             {
               bind.address = ''/run/user/1000/gnupg/S.gpg-agent'';
