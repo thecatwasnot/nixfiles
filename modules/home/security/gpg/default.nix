@@ -82,8 +82,7 @@ in
         '';
         enableExtraSocket = true;
       };
-      #gpg agent should be dead
-      programs.gpg.settings.no-autostart = false;
+      programs.gpg.settings.no-autostart = mkForce false;
       # Make sure ssh agent is off since we're using gpg agent
       services.ssh-agent.enable = false;
     })
